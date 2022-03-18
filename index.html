@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+
+<body>
+    <a id="singin" href="singin.html">Sing In</a>
+    <a id="login" href="login.html">Login</a>
+    <a href="saludos.html">Saludos</a>
+    <a href="saludos_privados.html">Saludos Privados!</a>
+    <a id="logout" href="#">Logout</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="/__/supabase/init.js"></script>
+
+    <script>
+        // (async (supabase) => {
+        //     console.log(supabase)
+        //     const response = await fetch('/publics.json')
+        //     const publics = await response.json()
+
+        //     var supabase = supabase.createClient(publics.SUPABASE_URL, publics.SUPABASE_KEY)
+
+        //     document.addEventListener('DOMContentLoaded', async function (event) {
+        //         var logoutButton = document.querySelector('#logout')
+        //         logoutButton.onclick = logoutSubmitted.bind(logoutButton)
+        //     })
+
+        //     const logoutSubmitted = async (event) => {
+        //         event.preventDefault()
+        //         await supabase.auth.signOut()
+        //     }
+
+        // })(supabase)
+
+        document.addEventListener('DOMContentLoaded', async function (event) {
+            var logoutButton = document.querySelector('#logout')
+            logoutButton.onclick = logoutSubmitted.bind(logoutButton)
+
+        if (supabase.auth.currentUser) {
+            document.querySelector('#logout').style.display = 'inline'
+            document.querySelector('#singin').style.display = 'none'
+            document.querySelector('#login').style.display = 'none'
+
+        }
+        else{
+            document.querySelector('#logout').style.display = 'none'
+            document.querySelector('#singin').style.display = 'inline'
+            document.querySelector('#login').style.display = 'inline'
+        }
+
+
+            var { data: saludos, error } = await supabase.from('saludos').select('*').order('id')
+            if (error) {
+                console.log('error', error)
+                return
+            }
+            console.log('saludos', saludos)
+
+            var { data: saludos, error } = await supabase.from('saludos_privados').select('*').order('id')
+            if (error) {
+                console.log('error', error)
+                return
+            }
+            console.log('saludos', saludos)
+
+
+
+
+        })
+
+        const logoutSubmitted = async (event) => {
+            event.preventDefault()
+            await supabase.auth.signOut()
+            location.reload()
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

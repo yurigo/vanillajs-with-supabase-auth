@@ -1,0 +1,5 @@
+dist/*
+.vercel
+
+__/supabase/init.js
+__/supabase/init.json
