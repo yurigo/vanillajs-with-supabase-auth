@@ -30,7 +30,3 @@ De esta forma acceder a la tabla saludos se puede hacer desde el anonimato pero 
 
 Inspirándome en firebase y su [_SDK auto-configuration_](https://firebase.google.com/docs/hosting/reserved-urls#sdk_auto-configuration) Las credenciales estarán en `__/supabase/init.js` y/o `__/supabase/init.js`.  Para no añadirlas en el repositorio están *.gitignoradas* y en su lugar tenemos los sample.* que habrá que sustituir.
 
-<br>
-<br>
-<br>
-<center><h2>👋</h2></center>
